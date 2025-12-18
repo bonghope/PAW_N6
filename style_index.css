@@ -1,0 +1,205 @@
+/* Container chung cho nội dung */
+.main-content {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 800;
+    margin: 40px 0;
+    font-size: 24px;
+}
+
+/* 1. Hero Banner */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+}
+
+.hero-text-box {
+    max-width: 500px;
+    color: #fff;
+}
+
+.hero-text-box h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn-donate {
+    background: #facc15;
+    border: none;
+    padding: 12px 30px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* 2. Projects */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 20px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.project-card p {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* 3. Pets Slider */
+.pets-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pet-card {
+    text-align: center;
+    width: 250px;
+}
+
+.pet-img-wrapper {
+    border: 8px solid #bfdbfe;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 300px;
+}
+
+.pet-card.active .pet-img-wrapper {
+    border-color: #3b82f6;
+    height: 350px;
+}
+
+.pet-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-adopt-now {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.next-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3b82f6;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* 4. Blog & Volunteer */
+.blog-volunteer-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.blog-card {
+    display: flex;
+    gap: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.blog-card img {
+    width: 300px;
+    border-radius: 20px;
+}
+
+.volunteer-signup {
+    margin-top: 80px;
+    text-align: center;
+    background: url('cat-bg.jpg');
+    background-size: cover;
+    padding: 60px;
+    border-radius: 30px;
+    color: #fff;
+    position: relative;
+}
+
+.signup-form {
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.input-row input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    width: 250px;
+}
+
+.btn-submit {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
