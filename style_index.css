@@ -12,21 +12,22 @@
     font-size: 24px;
 }
 
-/* 1. Hero Banner */
-.hero-section {
+/* 1. Banner */
+.home-section {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 700px;
     overflow: hidden;
 }
 
-.hero-img {
+
+.home-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    /* object-fit: cover; */
 }
 
-.hero-overlay {
+.home-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -38,12 +39,12 @@
     padding-left: 80px;
 }
 
-.hero-text-box {
+.home-text-box {
     max-width: 500px;
     color: #fff;
 }
 
-.hero-text-box h1 {
+.home-text-box h1 {
     font-size: 28px;
     font-weight: 800;
     margin-bottom: 20px;
@@ -51,13 +52,17 @@
 }
 
 .btn-donate {
-    background: #facc15;
+    background: #ffe374;
     border: none;
     padding: 12px 30px;
     font-weight: 700;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+}
+.btn-donate:hover{
+    background-color: #47289c;
+    color: #fff;
 }
 
 /* 2. Projects */
@@ -167,12 +172,13 @@
 }
 
 .volunteer-signup {
-    margin-top: 80px;
+    margin-top: 20px;
     text-align: center;
-    background: url('image\ 25.png');
+    background: url('img/img25.png');
+    
     background-size: cover;
     padding: 60px;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     color: #fff;
     position: relative;
 }
