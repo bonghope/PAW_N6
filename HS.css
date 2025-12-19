@@ -1,0 +1,754 @@
+:root {
+    --primary-color: #302b70;    /* Tím than */
+    --active-bg: #dbeafe;        /* Xanh nhạt (Menu/Footer) */
+    --tab-light-bg: #bfdbfe;     /* Tab Trang chủ */
+    --tab-dark-bg: #3b82f6;      /* Tab Nhận nuôi */
+    
+    --max-width-header: 1440px;  /* Khung web tổng */
+    
+    --max-width-content: 1200px; 
+    --max-width-footer:1000px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5e5; /* Màu nền demo */
+    display: flex; 
+    justify-content: center;
+}
+
+.site-wrapper {
+    width: 100%;
+    max-width: var(--max-width-header);
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+}
+.sticky-nav-wrapper {
+    /* Đây là lệnh giúp thanh này dính lại khi cuộn */
+    position: sticky; 
+    position: -webkit-sticky; /* Hỗ trợ trình duyệt Safari cũ */
+    
+    /* Vị trí dính: sát mép trên cùng */
+    top: 0; 
+    
+    /* Z-index rất cao để đảm bảo nó luôn nổi trên nội dung khi cuộn */
+    z-index: 1000; 
+    
+    /* Màu nền trong suốt (hoặc trắng nếu muốn che nội dung trôi qua phía sau tab) */
+    background-color: transparent; 
+}
+.btn-chat-noi {
+    
+    position: fixed; /* BẮT BUỘC: Giúp nó "stay" trên màn hình */
+    
+    /* Căn vị trí giống trong ảnh */
+    top: 480px;  
+    right: 80px;    
+    width: 73px;
+    height: 73px;
+    z-index: 9999;  /* Đảm bảo nó nổi lên trên cùng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-chat-noi img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hoặc contain tùy hình */
+    border-radius: 50%;
+}
+/* ================= 2. HEADER ================= */
+.main-header {
+    background-color: #ffffff;
+    height: 90px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex; justify-content: center;
+    position: relative; z-index: 100;
+}
+
+.header-container {
+    width: 100%; 
+    max-width: var(--max-width-header); /* Theo chuẩn 1000px */
+    height: 100%;
+    display: flex; justify-content: space-between; 
+    align-items: center; 
+    margin-left: 42px;
+    margin-right: 42px;
+    padding: 0; /* Không padding để thẳng hàng tuyệt đối */
+}
+
+.logo img { 
+    height: 65px; 
+    width: auto; 
+    display: block; }
+
+.nav-menu ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; 
+    align-items: center; }
+.nav-link {
+    text-decoration: none; 
+    color: #000;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-weight: 500; 
+    font-size: 16px; 
+    text-transform: uppercase;
+    padding: 8px 15px; 
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    white-space: nowrap;
+}
+.nav-link:hover { 
+    color: var(--primary-color); }
+.nav-link.active { 
+    background-color: var(--active-bg); 
+    color: #000; font-weight: 800; }
+
+.header-actions { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; }
+.icon-btn { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: #000; 
+    display: flex; 
+    align-items: center; 
+    transition: 0.3s; }
+.icon-btn:hover { color: var(--primary-color); 
+    transform: scale(1.1); }
+/* Container chính của Breadcrumb */
+/* --- BREADCRUMB TAB CHỒNG LỚP --- */
+.breadcrumb-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 90;
+    margin-top: -5px; /* Khớp sát mép header */
+}
+
+.breadcrumb-container {
+    width: 100%;
+    max-width: var(--max-width-content);
+    display: flex;
+}
+
+.breadcrumb-tabs {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Style chung cho tất cả các Tab */
+.tab-link {
+    text-decoration: none !important; /* Xóa bỏ gạch chân tím lỗi */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 12px 50px 12px 35px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+/* Tab 1: Trang chủ (Nằm dưới cùng bên trái) */
+.tab-link.home {
+    background-color: var(--tab-light-bg); /* Màu nhạt nhất */
+    color: #000;
+    border-radius: 0 0 0 25px; /* Bo góc dưới trái */
+    z-index: 1;
+}
+
+/* Tab 2: Nhận nuôi (Đè lên tab 1) */
+.tab-link.adopt {
+    background-color: #a2d2ff; 
+    color: #000;
+    margin-left: -30px; /* Kéo đè lên tab trước */
+    padding-left: 55px; /* Bù khoảng cách bị đè */
+    border-radius: 25px 0 0 0;
+    z-index: 2;
+    box-shadow: -5px 0 10px rgba(0,0,0,0.1); /* Tạo bóng đổ lấn sang trái để thấy lớp đè */
+}
+
+/* Tab 3: Măng cụt (Tab hiện tại - Đè lên trên cùng) */
+.tab-link.current {
+    background-color: var(--tab-dark-bg); /* Màu xanh đậm nhất */
+    color: #fff !important; /* Chữ trắng nổi bật */
+    margin-left: -30px;
+    padding-left: 55px;
+    padding-right: 45px;
+    border-radius: 25px 0px 20px 0;
+    z-index: 3;
+    box-shadow: -5px 0 10px rgba(0,0,0,0.15);
+}
+
+/* Hiệu ứng hover cho Tab */
+.tab-link:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px); /* Nhô lên nhẹ khi hover */
+}
+/* --- CSS HỒ SƠ BÉ MĂNG CỤT CHUẨN THIẾT KẾ --- */
+/* Container chung cho 1200px */
+.pet-profile-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    display: flex;
+    align-items: flex-start; /* Để các phần tử căn theo lề trên */
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+}
+
+/* Khối trang trí 125x121 */
+.decoration-behind {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 121px;
+    background-color: #dbeafe;
+    border-radius: 29px;
+    z-index: 1;
+}
+
+/* Ảnh Pet */
+.pet-photo-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-left: 35px;
+    margin-top: 15px;
+    flex: 0 0 314px;
+}
+
+.pet-photo-wrapper img {
+    width: 314px;
+    height: 314px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 10px solid #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* THẺ THÔNG TIN XANH */
+.pet-info-card {
+    flex: 1;
+    background-color: #dbeafe;
+    margin-left: -50px;
+    margin-top: 75px; /* Đẩy khối xanh xuống để lộ chữ Măng Cụt bên trên */
+    padding: 20px 40px 25px 100px;
+    border-radius: 0px 29px 29px 29px;
+    position: relative;
+    min-height: 250px;
+}
+
+/* Dòng tên Măng Cụt nằm ngoài khối xanh */
+.pet-header-top {
+    position: absolute;
+    top: -55px; /* Đưa tên lên phía trên khối xanh */
+    left: 100px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pet-name {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    color: #1e1b4b;
+    margin: 0;
+}
+
+.status-badge {
+    background-color: #ffea00;
+    color: #262626;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.status-badge.recovering {
+    background-color: #00a51b; /* Xanh nhạt */
+    color: #ffffff;           /* Chữ xanh đậm để dễ đọc */
+}
+
+/* CĂN CHỈNH 2 CỘT THÔNG TIN */
+.pet-specs-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia 2 cột bằng nhau tuyệt đối */
+    gap: 30px 100px; /* Khoảng cách giữa 2 cột lớn để thoáng */
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.spec-line {
+    display: flex;
+    align-items: center; /* Căn giữa chấm xanh và chữ theo chiều dọc */
+    gap: 12px;
+    font-size: 16px;
+    
+    /* Khoảng cách chữ so với đường kẻ bên dưới */
+    padding-bottom: 10px; 
+    margin-bottom: 10px;
+    
+    /* Đường kẻ trắng mờ nằm dưới mỗi dòng thông tin */
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.6); 
+}
+
+.spec-line strong, 
+.spec-line .val {
+    line-height: 1.2;
+    display: inline-block;
+}
+
+/* Ẩn chấm xanh ở các dòng phụ nếu bạn muốn giống ảnh mẫu 100% */
+.spec-line .dot-lead {
+    flex-shrink: 0; /* Không cho chấm bị bóp méo */
+}
+
+/* FOOTER ACTIONS */
+.card-footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% + 40px); /* Bù lại padding để dạt sát lề */
+    margin-left: -100px; 
+}
+
+.code-tag-badge {
+    background-color: #93c5fd;
+    color: #000;
+    padding: 8px 30px 8px 100px;
+    border-radius: 0 20px 20px 0;
+    font-weight: 700;
+}
+
+.btn-action-blue {
+    /* 1. Bố cục và Màu sắc */
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #3b82f6; /* Màu xanh Primary của bạn */
+    color: #ffffff !important;
+    
+    /* 2. Định dạng chữ và Kích thước */
+    padding: 12px 35px;
+    border-radius: 50px; /* Bo tròn hoàn toàn */
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    white-space: nowrap;
+    
+    /* 3. Hiệu ứng đổ bóng chuẩn Figma */
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    
+    /* 4. Chuyển động mượt mà */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* --- HIỆU ỨNG KHI RE CHUỘT (HOVER) --- */
+.btn-action-blue:hover {
+    background-color: #2563eb; /* Đậm hơn một chút */
+    transform: translateY(-3px); /* Nhô lên nhẹ */
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
+/* Hiệu ứng cho icon mũi tên */
+.btn-action-blue i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.btn-action-blue:hover i {
+    transform: translateX(5px); /* Mũi tên trượt sang phải khi hover */
+}
+
+/* --- HIỆU ỨNG KHI NHẤN (ACTIVE) --- */
+.btn-action-blue:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+/* --- BANNER HỖ TRỢ TRẢI DÀI TOÀN MÀN HÌNH --- */
+.banner-container {
+    width: 100%;
+    margin: 40px 0; /* Khoảng cách trên dưới cho dải banner */
+}
+
+.support-banner-fluid {
+    width: 100%;
+    height: 160px; /* Chiều cao dải banner */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* GÁN ẢNH NỀN NN_1 */
+    background-image: url('NN_img.jpg'); /* Đảm bảo file tên NN_1 và đúng định dạng .jpg hoặc .png */
+    background-size: cover;      /* Ảnh phủ kín khung hình */
+    background-position: center; /* Giữ tâm ảnh ở giữa */
+    background-repeat: no-repeat;
+}
+
+/* Lớp phủ màu trắng mờ đè lên ảnh để làm nổi bật chữ (giống thiết kế Figma) */
+.support-banner-fluid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* Màu trắng mờ 60% */
+    z-index: 1;
+}
+
+.support-banner-inner {
+    position: relative;
+    z-index: 2; /* Đẩy chữ và nút nổi lên trên lớp phủ mờ */
+    width: 100%;
+    max-width: 1200px; /* Nội dung chữ vẫn thẳng hàng với 1200px của Content Container */
+    display: flex;
+    justify-content: space-between; /* Chữ dạt trái, nút dạt phải */
+    align-items: center;
+    padding: 0 40px;
+}
+
+.support-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #000;
+    margin: 0;
+}
+
+/* Nút Ủng hộ màu vàng */
+.btn-donate-yellow {
+    background-color: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    padding: 12px 60px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-donate-yellow:hover {
+    transform: scale(1.05);
+    background-color: #ffdb4d;
+}
+/* ================= 4. FOOTER HOÀN CHỈNH ================= */
+footer { 
+    width: 100%; 
+    margin-top: 20px; 
+    padding-top: 20px; }
+
+.footer-inner {
+    background-color: var(--active-bg);
+    width: 100%;
+    border-top-left-radius: 80px; /* Góc bo lớn đặc trưng */
+    padding: 40px 0 20px 0;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--max-width-footer); /* 1000px */
+    margin: 0 auto;
+    padding: 0;
+    
+    display: grid;
+    /* Tỷ lệ cột khớp ảnh: 40% - 20% - 30% */
+    grid-template-columns: 4.3fr 2fr 2.7fr; 
+    gap: 60px; 
+    margin-bottom: 40px;
+}
+
+/* --- Cột 1: Thông tin (Căn trái tuyệt đối) --- */
+.col-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ép mọi thứ sang trái */
+}
+
+/* Logo & Tên Pawsitive */
+.brand-wrapper {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.brand-icon {
+    width: auto; 
+    height: 99px; 
+    object-fit: contain;
+
+    margin-bottom: 5px; display: block; 
+    margin-left: 0;
+}
+.brand-name {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 32px; 
+    font-weight: 800; 
+    color: var(--primary-color);
+    line-height: 1; 
+    margin-left: -2px; /* Thẳng mép với icon */
+    text-transform: none;
+}
+
+/* Mô tả */
+.footer-desc {
+    font-size: 14px; 
+    line-height: 1.6; 
+    color: #333; 
+    margin-bottom: 20px;
+    padding-right: 10px; 
+    text-align: left;
+}
+
+/* Giá trị cốt lõi */
+.core-value-box {
+    background-color: #fff; 
+    padding: 10px; border-radius: 12px;
+    border-left: 5px solid var(--primary-color); 
+    margin-bottom: 20px;
+    width: 100%; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+    text-align: left;
+}
+.core-value-box strong { 
+    display: block; 
+    font-size: 14px; 
+    margin-bottom: 5px; 
+    color: #000; 
+    font-weight: 800; }
+.core-value-box p { 
+    font-size: 14px; 
+    color: #555; 
+    margin: 0; }
+
+/* Social Icons */
+.social-icons { 
+    display: flex; 
+    gap: 15px; }
+.social-icons a { 
+    color: #000; 
+    font-size: 20px; 
+    transition: 0.3s; }
+.social-icons a:hover { 
+    color: var(--primary-color); 
+    transform: translateY(-3px); }
+
+/* --- Cột 2 & 3: Tiêu đề --- */
+.footer-heading {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 20px; font-weight: bold; color: #000;
+    margin-top: 90px;
+    margin-bottom: 15px; 
+    padding-bottom: 8px; 
+    display: inline-block;
+    border-bottom: 3px solid var(--primary-color); /* Gạch chân tím */
+}
+
+/* Links */
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 15px; }
+.footer-list a {
+    text-decoration: none; 
+    color: #333; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; transition: 0.3s;
+}
+.footer-list a i { 
+    font-size: 10px; 
+    margin-right: 12px; 
+    color: #333; 
+    width: 10px; }
+.footer-list a:hover { 
+    color: var(--primary-color); 
+    transform: translateX(5px); }
+
+/* Contact */
+.contact-list { list-style: none; }
+.contact-list li {
+    display: flex; 
+    align-items: flex-start; 
+    margin-bottom: 18px;
+    font-size: 14px; 
+    color: #333; 
+    font-weight: 500; 
+    line-height: 1.5;
+}
+.contact-list i {
+    width: 25px; 
+    min-width: 25px; 
+    margin-top: 3px; 
+    
+    font-size: 16px; 
+    color: #000;
+}
+
+/* Bottom */
+.footer-bottom {
+    border-top: 1px solid #cbd5e1; 
+    padding-top: 25px; 
+    text-align: center;
+    font-size: 13px; 
+    color: #64748b; 
+    width: 100%;
+    max-width: var(--max-width-content); 
+    margin: 0 auto;
+}
+/* ================= 5. BODY CONTENT (QUY TRÌNH & ĐIỀU KIỆN) ================= */
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.content-container {
+    width: 100%;
+    max-width: var(--max-width-content); 
+    padding: 10px 0;
+}
+
+/* Layout Grid 2 cột: Trái lớn (65%) - Phải nhỏ (35%) */
+.adoption-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 20px;
+    align-items: stretch; /* Để 2 thẻ cao bằng nhau */
+}
+
+/* Style chung cho Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px 30px;
+    /* Đổ bóng nhẹ giống ảnh */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+/* Đường gạch mờ phân cách tiêu đề */
+.divider {
+    height: 2px;
+    background-color: #dedede;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* --- CARD TRÁI: QUY TRÌNH --- */
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 22%; /* Chia đều không gian */
+}
+
+/* Vòng tròn icon */
+.step-icon {
+    width: 70px;
+    height: 70px;
+    background-color: #e5e5e5; /* Màu xám nền icon */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+/* Hover đổi màu icon */
+.step-item:hover .step-icon {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.step-name {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.step-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Mũi tên giữa các bước */
+.step-arrow {
+    font-size: 16px;
+    color: #333;
+    padding-top: 25px; /* Căn giữa theo chiều cao icon */
+}
+
+/* --- CARD PHẢI: ĐIỀU KIỆN --- */
+.condition-list {
+    list-style: none;
+}
+
+.condition-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 9px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.3;
+}
+
+.condition-list i {
+    color: #00de9f; /* Màu xanh mint (check) */
+    font-size: 18px;
+    margin-right: 12px;
+    margin-top: 2px; /* Căn chỉnh icon với dòng đầu tiên */
+    flex-shrink: 0;
+}
+/* --- 1. Khu vực bao quanh --- */
+.search-section {
+    text-align: center; /* Căn giữa toàn bộ nội dung */
+    margin: 50px 0 30px 0; /* Khoảng cách trên dưới */
+    font-family: 'Montserrat alternates', sans-serif;
+}

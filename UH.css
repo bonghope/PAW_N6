@@ -1,0 +1,683 @@
+/* ================= 1. CẤU HÌNH CHUNG ================= */
+:root {
+    --primary-color: #302b70;    
+    --active-bg: #dbeafe;        
+    --tab-light-bg: #bfdbfe;     
+    --tab-dark-bg: #3b82f6; 
+    --teel-bg: #d1eeee;     
+    
+    --max-width-header: 1440px;  
+    --max-width-content: 1200px; 
+    --max-width-footer:1000px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5e5; 
+    display: flex; 
+    justify-content: center;
+}
+
+.site-wrapper {
+    width: 100%;
+    max-width: var(--max-width-header);
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+}
+.sticky-nav-wrapper {
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    background-color: transparent; 
+}
+.btn-chat-noi {
+    
+    position: fixed; 
+    
+    top: 480px;  
+    right: 80px;    
+    width: 73px;
+    height: 73px;
+    z-index: 9999;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-chat-noi img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+/* ================= 2. HEADER ================= */
+.main-header {
+    background-color: #ffffff;
+    height: 90px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex; justify-content: center;
+    position: relative; z-index: 100;
+}
+
+.header-container {
+    width: 100%; 
+    max-width: var(--max-width-header); 
+    height: 100%;
+    display: flex; justify-content: space-between; 
+    align-items: center; 
+    margin-left: 42px;
+    margin-right: 42px;
+    padding: 0; 
+}
+
+.logo img { 
+    height: 65px; 
+    width: auto; 
+    display: block; }
+
+.nav-menu ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; 
+    align-items: center; }
+.nav-link {
+    text-decoration: none; 
+    color: #000;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-weight: 500; 
+    font-size: 16px; 
+    text-transform: uppercase;
+    padding: 8px 15px; 
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    white-space: nowrap;
+}
+.nav-link:hover { 
+    color: var(--primary-color); }
+.nav-link.active { 
+    background-color: var(--active-bg); 
+    color: #000; font-weight: 800; }
+
+.header-actions { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; }
+.icon-btn { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: #000; 
+    display: flex; 
+    align-items: center; 
+    transition: 0.3s; }
+.icon-btn:hover { color: var(--primary-color); 
+    transform: scale(1.1); }
+
+/* ================= 3. BREADCRUMB (TAB CHỒNG LỚP) ================= */
+.breadcrumb-bar {
+    width: 100%; 
+    display: flex; 
+    justify-content: center;
+    position: relative; 
+    z-index: 90; 
+    margin-top: -5px;
+}
+.breadcrumb-container {
+    width: 100%; 
+    max-width: var(--max-width-content); 
+    padding: 0; 
+    display: flex;
+}
+.breadcrumb-tabs {
+    display: flex; 
+    align-items: flex-end; 
+    margin-left: 0;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+}
+
+/* Tab Trang chủ */
+.tab-link.home {
+    text-decoration: none; 
+    display: block; 
+    padding: 12px 50px 12px 30px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; font-size: 15px;
+    background-color: var(--tab-light-bg); 
+    color: #000;
+    border-radius: 0 0 0 20px; 
+    position: relative; 
+    z-index: 1; transition: 0.3s;
+}
+
+/* Tab Nhận nuôi (Đè lên trên) */
+     .tab-link.donate {
+    text-decoration: none; 
+    display: block; padding: 12px 30px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    font-size: 15px;
+    background-color: var(--tab-dark-bg); 
+    color: #fff;
+    border-radius: 25px 0 20px 0; 
+    position: relative; 
+    z-index: 2; 
+    margin-left: -30px; 
+    transition: 0.3s;
+}
+.donation-hero-banner {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    z-index: 1; 
+}
+.hero-img { 
+    width: 100%; 
+    height: 100%; 
+    margin-top: -50px;
+    object-fit: cover; 
+    display: block; }
+
+.donation-main-layout {
+    max-width: var(--max-width-content);
+    display: flex; 
+    justify-content: flex-start;
+    gap: 30px; 
+    padding: 20px;
+    margin: 0 auto;
+    position: relative;
+}
+.donation-title{
+    margin-top: -60px;
+}
+.donation-info-column {
+    flex: 1;
+}
+
+.donation-image-column {
+    flex: 0 0 340px;
+    position: relative;
+}
+
+.teal-frame-overlap {
+    background-color: var(--teel-bg);
+    width: 340px;
+    height: 480px;
+    border-radius: 40px;
+    
+    position: absolute;
+    top: -200px; 
+    right: 0;
+    
+    z-index: 100;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    /* display: flex; */
+    flex-direction: column;
+    overflow: hidden;
+    /* gap: 15px; */
+}
+.paw-base-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+}
+.qr-top-layer {
+    position: absolute;
+    top: 20px; 
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+.qr-white-box {
+    background-color: #fff;
+    width: 280px; 
+    height: 280px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.qr-white-box img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.paw-base-layer img {
+    width: 100%; ;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+
+.donation-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.title-underline {
+    height: 1px;
+    background-color: #eee;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.donation-body-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.8; 
+    color: #333333; 
+    margin-bottom: 10px;
+    text-align: justify; 
+}
+/* Icon & Stats */
+.donation-info-boxes { 
+    margin: 35px 0; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; }
+.info-item { 
+    display: flex; 
+    gap: 15px; 
+    align-items: flex-start; 
+    line-height: 1.5; }
+.info-item img{
+    width: 24px;
+    height: auto;
+    margin-top: 3px;
+}
+.info-item.bank img {
+    width: 30px;
+    opacity: 1;
+}
+.bank-details p {
+    margin: 0;
+    font-size: 16px;
+}
+.year-stats {
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 100;
+    color: #666;
+}
+
+.year-stats p {
+    margin-bottom: 15px;
+}
+.sponsor-note {
+    margin-bottom: 25px;
+    font-weight: 400;
+    color: #000;
+}
+
+/* Link năm */
+.year-stats a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.year-stats a:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+/* ===== SPONSOR SECTION ===== */
+.sponsor-section {
+    background-color: #dff0ff;
+    width: 100%; /* Đảm bảo box xanh rộng hết container */
+    margin: 60px auto; /* Căn giữa box xanh */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.sponsor-section h3 {
+    font-size: 32px;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sponsor-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.sponsor-item img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 7px solid #032d65;
+}
+
+.sponsor-item p {
+    margin-top: 8px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 100;
+}
+/* Container bọc ngoài cùng */
+.other-support-section {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 80px auto; /* Tăng khoảng cách với phần trên */
+    text-align: center;
+}
+.section-title-center{
+    font-size: 32px;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+/* Grid chứa 3 icon */
+.support-methods-grid {
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* Khoảng cách giữa các cột */
+    margin: 50px 0;
+}
+
+/* Mỗi item bao gồm Icon + Chữ */
+.method-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: 0.3s;
+}
+.method-item:hover .icon-circle-outer img {
+    transform: scale(1.1); /* Hình ảnh bên trong hơi phóng to nhẹ */
+    transition: 0.3s;
+}
+
+/* Vòng tròn bên ngoài icon */
+.icon-circle-outer {
+    width: 120px;
+    height: 120px;
+    border: 4px solid #d1d5db; /* Màu viền xám mặc định */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    
+    /* QUAN TRỌNG: Tạo chuyển động mượt mà khi hover */
+    transition: all 0.3s ease; 
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.icon-circle-outer img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+}
+.method-item:hover .icon-circle-outer {
+    border-color: var(--primary-color); 
+    
+    transform: translateY(-10px) rotate(-5deg); 
+
+    box-shadow: 0 12px 24px rgba(48, 43, 112, 0.2);
+}
+.method-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500; 
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap; 
+    text-align: center;
+}
+.method-item:hover .method-name {
+    color: var(--primary-color);
+    font-weight: 700;
+    transition: 0.3s;
+}
+.icon-circle-outer {
+    width: 120px;
+    height: 120px;
+    border: 4px solid #d1d5db; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.contact-btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.btn-contact-main {
+    display: inline-block;
+    background-color: #3b82f6; 
+    color: #ffffff;
+    padding: 15px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); 
+}
+
+.btn-contact-main:hover {
+    background-color: var(--primary-color); 
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+footer { 
+    width: 100%; 
+    margin-top: 20px; 
+    padding-top: 20px; }
+
+.footer-inner {
+    background-color: var(--active-bg);
+    width: 100%;
+    border-top-left-radius: 80px; 
+    padding: 40px 0 20px 0;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--max-width-footer); 
+    margin: 0 auto;
+    padding: 0;
+    
+    display: grid;
+    grid-template-columns: 4.3fr 2fr 2.7fr; 
+    gap: 60px; 
+    margin-bottom: 40px;
+}
+
+.col-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.brand-wrapper {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.brand-icon {
+    width: auto; 
+    height: 99px; 
+    object-fit: contain;
+
+    margin-bottom: 5px; display: block; 
+    margin-left: 0;
+}
+.brand-name {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 32px; 
+    font-weight: 800; 
+    color: var(--primary-color);
+    line-height: 1; 
+    margin-left: -2px; 
+    text-transform: none;
+}
+
+/* Mô tả */
+.footer-desc {
+    font-size: 14px; 
+    line-height: 1.6; 
+    color: #333; 
+    margin-bottom: 20px;
+    padding-right: 10px; 
+    text-align: left;
+}
+
+/* Giá trị cốt lõi */
+.core-value-box {
+    background-color: #fff; 
+    padding: 10px; border-radius: 12px;
+    border-left: 5px solid var(--primary-color); 
+    margin-bottom: 20px;
+    width: 100%; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+    text-align: left;
+}
+.core-value-box strong { 
+    display: block; 
+    font-size: 14px; 
+    margin-bottom: 5px; 
+    color: #000; 
+    font-weight: 800; }
+.core-value-box p { 
+    font-size: 14px; 
+    color: #555; 
+    margin: 0; }
+
+/* Social Icons */
+.social-icons { 
+    display: flex; 
+    gap: 15px; }
+.social-icons a { 
+    color: #000; 
+    font-size: 20px; 
+    transition: 0.3s; }
+.social-icons a:hover { 
+    color: var(--primary-color); 
+    transform: translateY(-3px); }
+
+.footer-heading {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 20px; font-weight: bold; color: #000;
+    margin-top: 90px;
+    margin-bottom: 15px; 
+    padding-bottom: 8px; 
+    display: inline-block;
+    border-bottom: 3px solid var(--primary-color); /* Gạch chân tím */
+}
+
+/* Links */
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 15px; }
+.footer-list a {
+    text-decoration: none; 
+    color: #333; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; transition: 0.3s;
+}
+.footer-list a i { 
+    font-size: 10px; 
+    margin-right: 12px; 
+    color: #333; 
+    width: 10px; }
+.footer-list a:hover { 
+    color: var(--primary-color); 
+    transform: translateX(5px); }
+
+/* Contact */
+.contact-list { list-style: none; }
+.contact-list li {
+    display: flex; 
+    align-items: flex-start; 
+    margin-bottom: 18px;
+    font-size: 14px; 
+    color: #333; 
+    font-weight: 500; 
+    line-height: 1.5;
+}
+.contact-list i {
+    width: 25px; 
+    min-width: 25px; 
+    margin-top: 3px; 
+    
+    font-size: 16px; 
+    color: #000;
+}
+
+/* Bottom */
+.footer-bottom {
+    border-top: 1px solid #cbd5e1; 
+    padding-top: 25px; 
+    text-align: center;
+    font-size: 13px; 
+    color: #64748b; 
+    width: 100%;
+    max-width: var(--max-width-content); 
+    margin: 0 auto;
+}
+.main-content { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    padding: 40px 0; }
+
+.content-container {
+    width: 100%;
+    max-width: var(--max-width-content); 
+    padding: 10px 0;
+}
+
+.adoption-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 20px;
+    align-items: stretch; 
+}
+
+
+
+
+
+
+/* Responsive cho phần Nội dung */
+@media (max-width: 1024px) {
+    .adoption-grid { grid-template-columns: 1fr; }
+    .process-steps { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .step-item { width: 45%; }
+    .step-arrow { display: none; }
+
+    .footer-container { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+    .header-container,
+    .breadcrumb-container { padding: 0 20px; }
+
+    .nav-menu { display: none; }
+}
