@@ -1,0 +1,668 @@
+/* ================= 1. CẤU HÌNH CHUNG ================= */
+:root {
+    --primary-color: #302b70;    /* Tím than */
+    --active-bg: #dbeafe;        /* Xanh nhạt (Menu/Footer) */
+    --tab-light-bg: #bfdbfe;     /* Tab Trang chủ */
+    --tab-dark-bg: #3b82f6;      /* Tab Liên hệ */
+    
+    --max-width-header: 1440px;  /* Khung web tổng */
+    
+    --max-width-content: 1200px; 
+    --max-width-footer:1000px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5e5; /* Màu nền demo */
+    display: flex; justify-content: center;
+}
+
+.site-wrapper {
+    width: 100%;
+    max-width: var(--max-width-header);
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+}
+.sticky-nav-wrapper {
+    /* Đây là lệnh giúp thanh này dính lại khi cuộn */
+    position: sticky; 
+    position: -webkit-sticky; /* Hỗ trợ trình duyệt Safari cũ */
+    
+    /* Vị trí dính: sát mép trên cùng */
+    top: 0; 
+    
+    /* Z-index rất cao để đảm bảo nó luôn nổi trên nội dung khi cuộn */
+    z-index: 1000; 
+    
+    /* Màu nền trong suốt (hoặc trắng nếu muốn che nội dung trôi qua phía sau tab) */
+    background-color: transparent; 
+}
+.btn-chat-noi {
+    
+    position: fixed; /* BẮT BUỘC: Giúp nó "stay" trên màn hình */
+    
+    /* Căn vị trí giống trong ảnh */
+    top: 480px;  
+    right: 80px;    
+    width: 73px;
+    height: 73px;
+    z-index: 9999;  /* Đảm bảo nó nổi lên trên cùng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-chat-noi img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hoặc contain tùy hình */
+    border-radius: 50%;
+}
+/* ================= 2. HEADER ================= */
+.main-header {
+    background-color: #ffffff;
+    height: 90px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex; justify-content: center;
+    position: relative; z-index: 100;
+}
+
+.header-container {
+    width: 100%; 
+    max-width: var(--max-width-header); /* Theo chuẩn 1000px */
+    height: 100%;
+    display: flex; justify-content: space-between; 
+    align-items: center; 
+    margin-left: 42px;
+    margin-right: 42px;
+    padding: 0; /* Không padding để thẳng hàng tuyệt đối */
+}
+
+.logo img { 
+    height: 65px; 
+    width: auto; 
+    display: block; }
+
+.nav-menu ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; 
+    align-items: center; }
+.nav-link {
+    text-decoration: none; 
+    color: #000;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-weight: 500; 
+    font-size: 16px; 
+    text-transform: uppercase;
+    padding: 8px 15px; 
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    white-space: nowrap;
+}
+.nav-link:hover { 
+    color: var(--primary-color); }
+.nav-link.active { 
+    background-color: var(--active-bg); 
+    color: #000; font-weight: 800; }
+
+.header-actions { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; }
+.icon-btn { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: #000; 
+    display: flex; 
+    align-items: center; 
+    transition: 0.3s; }
+.icon-btn:hover { color: var(--primary-color); 
+    transform: scale(1.1); }
+
+/* ================= 3. BREADCRUMB (UPDATE 3 TABS) ================= */
+.breadcrumb-bar {
+    width: 100%; 
+    display: flex; 
+    justify-content: center;
+    position: relative; 
+    z-index: 90; 
+    margin-top: -5px;
+}
+.breadcrumb-container {
+    width: 100%; 
+    max-width: var(--max-width-content); 
+    padding: 0; 
+    display: flex;
+}
+.breadcrumb-tabs {
+    display: flex; 
+    align-items: flex-end; 
+    margin-left: 0;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+}
+
+/* --- Style chung cho tất cả các Tab --- */
+.tab-link {
+    text-decoration: none; 
+    display: block; 
+    padding: 12px 40px 12px 30px; /* Padding phải rộng để không bị tab sau che mất chữ */
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    font-size: 15px;
+    
+    /* Mặc định là màu nhạt (Trạng thái chưa chọn) */
+    background-color: var(--tab-light-bg); 
+    color: #000;
+    
+    /* Tạo hình dáng tab nghiêng/bo góc */
+    border-radius: 25px 0 20px 0; 
+    
+    position: relative; 
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+/* Tab đầu tiên (Trang chủ) có dáng hơi khác một chút ở góc trái */
+.tab-link.step-1 {
+    border-radius: 0 0 20px 20px; /* Hoặc giữ nguyên 0 0 0 20px như cũ nếu bạn thích vuông góc trên */
+    z-index: 1;
+    margin-left: 0;
+    padding-left: 40px; /* Căn lề trái rộng hơn chút */
+}
+
+/* Tab thứ 2 (Liên hệ) - Đè lên tab 1 */
+.tab-link.step-2 {
+    z-index: 2;
+    margin-left: -30px; /* Kéo lùi lại để đè lên tab trước */
+}
+
+/* Tab thứ 3 (Đội ngũ) - Đè lên tab 2 */
+.tab-link.step-3 {
+    z-index: 3;
+    margin-left: -30px;
+}
+
+/* --- Trạng thái Active (Đang chọn) --- */
+.tab-link.active {
+    background-color: var(--tab-dark-bg); /* Màu xanh đậm */
+    color: #fff; /* Chữ trắng */
+    padding-right: 50px; /* Tab cuối dài hơn chút cho đẹp */
+}
+
+/* Hiệu ứng hover */
+.tab-link:hover {
+    filter: brightness(95%);
+}
+/* ================= 4. FOOTER HOÀN CHỈNH ================= */
+footer { 
+    width: 100%; 
+    margin-top: 20px; 
+    padding-top: 20px; }
+
+.footer-inner {
+    background-color: var(--active-bg);
+    width: 100%;
+    border-top-left-radius: 80px; /* Góc bo lớn đặc trưng */
+    padding: 40px 0 20px 0;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--max-width-footer); /* 1000px */
+    margin: 0 auto;
+    padding: 0;
+    
+    display: grid;
+    /* Tỷ lệ cột khớp ảnh: 40% - 20% - 30% */
+    grid-template-columns: 4.3fr 2fr 2.7fr; 
+    gap: 60px; 
+    margin-bottom: 40px;
+}
+
+/* --- Cột 1: Thông tin (Căn trái tuyệt đối) --- */
+.col-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ép mọi thứ sang trái */
+}
+
+/* Logo & Tên Pawsitive */
+.brand-wrapper {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.brand-icon {
+    width: auto; 
+    height: 99px; 
+    object-fit: contain;
+
+    margin-bottom: 5px; display: block; 
+    margin-left: 0;
+}
+.brand-name {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 32px; 
+    font-weight: 800; 
+    color: var(--primary-color);
+    line-height: 1; 
+    margin-left: -2px; /* Thẳng mép với icon */
+    text-transform: none;
+}
+
+/* Mô tả */
+.footer-desc {
+    font-size: 14px; 
+    line-height: 1.6; 
+    color: #333; 
+    margin-bottom: 20px;
+    padding-right: 10px; 
+    text-align: left;
+}
+
+/* Giá trị cốt lõi */
+.core-value-box {
+    background-color: #fff; 
+    padding: 10px; border-radius: 12px;
+    border-left: 5px solid var(--primary-color); 
+    margin-bottom: 20px;
+    width: 100%; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+    text-align: left;
+}
+.core-value-box strong { 
+    display: block; 
+    font-size: 14px; 
+    margin-bottom: 5px; 
+    color: #000; 
+    font-weight: 800; }
+.core-value-box p { 
+    font-size: 14px; 
+    color: #555; 
+    margin: 0; }
+
+/* Social Icons */
+.social-icons { 
+    display: flex; 
+    gap: 15px; }
+.social-icons a { 
+    color: #000; 
+    font-size: 20px; 
+    transition: 0.3s; }
+.social-icons a:hover { 
+    color: var(--primary-color); 
+    transform: translateY(-3px); }
+
+/* --- Cột 2 & 3: Tiêu đề --- */
+.footer-heading {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 20px; font-weight: bold; color: #000;
+    margin-top: 90px;
+    margin-bottom: 15px; 
+    padding-bottom: 8px; 
+    display: inline-block;
+    border-bottom: 3px solid var(--primary-color); /* Gạch chân tím */
+}
+
+/* Links */
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 15px; }
+.footer-list a {
+    text-decoration: none; 
+    color: #333; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; transition: 0.3s;
+}
+.footer-list a i { 
+    font-size: 10px; 
+    margin-right: 12px; 
+    color: #333; 
+    width: 10px; }
+.footer-list a:hover { 
+    color: var(--primary-color); 
+    transform: translateX(5px); }
+
+/* Contact */
+.contact-list { list-style: none; }
+.contact-list li {
+    display: flex; 
+    align-items: flex-start; 
+    margin-bottom: 18px;
+    font-size: 14px; 
+    color: #333; 
+    font-weight: 500; 
+    line-height: 1.5;
+}
+.contact-list i {
+    width: 25px; 
+    min-width: 25px; 
+    margin-top: 3px; 
+    
+    font-size: 16px; 
+    color: #000;
+}
+
+/* Bottom */
+.footer-bottom {
+    border-top: 1px solid #cbd5e1; 
+    padding-top: 25px; 
+    text-align: center;
+    font-size: 13px; 
+    color: #64748b; 
+    width: 100%;
+    max-width: var(--max-width-content); 
+    margin: 0 auto;
+}
+/* ================= 5. BODY CONTENT  ================= */
+/* ================= TRANG BÁO CÁO (REPORT) ================= */
+
+/* --- Header Tiêu đề --- */
+.report-header-wrapper {
+    text-align: center;
+    padding: 50px 20px 30px;
+    background-color: #fff;
+}
+.report-main-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.report-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* --- Phần Báo cáo Mới nhất (Card Lớn) --- */
+.latest-report-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.latest-report-card {
+    width: 100%;
+    max-width: 900px; /* Card rộng nhưng không quá tràn */
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Bóng đổ đậm hơn chút cho nổi */
+    overflow: hidden;
+    margin: 0 20px;
+    border: 1px solid #eee;
+}
+
+/* Header của Card (Màu nền xanh) */
+.latest-card-header {
+    background-color: #F4F8FD; /* Màu xanh rất nhạt */
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.latest-card-header h3 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    flex: 1; /* Đẩy nội dung ra giữa */
+    margin-left: 20px;
+}
+
+.month-badge {
+    background-color: #27AE60; /* Màu xanh lá */
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-download {
+    text-decoration: none;
+    color: #2D88EF;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #2D88EF;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.btn-download:hover {
+    background-color: #2D88EF;
+    color: #fff;
+}
+
+/* Body của Card */
+.latest-card-body {
+    padding: 40px;
+    display: flex;
+    gap: 50px;
+}
+
+/* Cột Tài chính (Trái) */
+.finance-stats {
+    flex: 2; /* Chiếm 2 phần */
+}
+
+.stat-row {
+    margin-bottom: 25px;
+}
+
+.stat-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.stat-value.income { color: #27AE60; } /* Màu tiền thu: Xanh lá */
+.stat-value.expense { color: #E74C3C; } /* Màu tiền chi: Đỏ */
+.stat-value.remain { color: #2D88EF; font-size: 18px; font-weight: 800; }
+
+/* Thanh Progress Bar */
+.progress-bg {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 10px;
+}
+.income-bar { background-color: #27AE60; }
+.expense-bar { background-color: #E74C3C; }
+
+.expense-note {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Cột Hoạt động (Phải) */
+.activity-stats {
+    flex: 1; /* Chiếm 1 phần */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    border-left: 1px solid #eee; /* Đường kẻ dọc ngăn cách */
+    padding-left: 50px;
+}
+
+.act-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.act-box i {
+    font-size: 24px;
+    color: #2D88EF;
+    width: 30px;
+    text-align: center;
+}
+
+.act-box strong {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.act-box span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* --- Phần Lưu trữ (Archive Grid) --- */
+.archive-section-wrapper {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.archive-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center; /* Hoặc để left tùy ý */
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột */
+    gap: 20px;
+}
+
+.archive-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.archive-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-color: #2D88EF;
+}
+
+.archive-icon {
+    font-size: 30px;
+    color: #E74C3C; /* Icon PDF màu đỏ */
+}
+
+.archive-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.archive-info a {
+    font-size: 12px;
+    color: #2D88EF;
+    text-decoration: none;
+}
+
+/* --- Responsive Mobile --- */
+@media (max-width: 768px) {
+    .latest-card-body {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
+    
+    .activity-stats {
+        border-left: none;
+        border-top: 1px solid #eee;
+        padding-left: 0;
+        padding-top: 30px;
+        flex-direction: row; /* Chuyển icon thành hàng ngang trên mobile */
+        justify-content: space-around;
+    }
+    
+    .act-box {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cột trên mobile */
+    }
+    
+    .latest-card-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .latest-card-header h3 { margin-left: 0; }
+}
+/* --- CẬP NHẬT CSS CHO ARCHIVE ITEM (BẤM ĐƯỢC TOÀN BỘ) --- */
+
+.archive-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+    cursor: pointer;
+    
+    /* Thêm các thuộc tính này để xóa định dạng link mặc định */
+    text-decoration: none; /* Bỏ gạch chân */
+    color: inherit;        /* Giữ màu chữ gốc (đen) thay vì màu xanh link */
+}
+
+.archive-item:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08); /* Bóng đổ đậm hơn khi di chuột */
+    border-color: #2D88EF;
+    transform: translateY(-5px); /* Nổi lên nhẹ */
+}
+
+.archive-icon {
+    font-size: 30px;
+    color: #E74C3C; /* Icon PDF màu đỏ */
+    transition: 0.3s;
+}
+
+/* Hiệu ứng: Khi di chuột vào khung thì icon rung nhẹ */
+.archive-item:hover .archive-icon {
+    transform: scale(1.1);
+}
+
+.archive-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+.archive-info .view-link {
+    font-size: 12px;
+    color: #2D88EF; /* Chữ "Xem chi tiết" màu xanh */
+    font-weight: 600;
+}

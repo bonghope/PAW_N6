@@ -1,7 +1,7 @@
 /* Container chung cho nội dung */
 .main-content {
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 .section-title {
@@ -24,6 +24,7 @@
 .home-img {
     width: 100%;
     height: auto;
+    object-position: center 20%;
     /* object-fit: cover; */
 }
 
@@ -52,6 +53,8 @@
 }
 
 .btn-donate {
+    text-decoration: none;   /* bỏ gạch chân */
+    color: #000000; 
     background: #ffe374;
     border: none;
     padding: 12px 30px;
@@ -74,19 +77,40 @@
     margin: 0 auto;
     padding: 0 20px;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none;
+    color: inherit;
+}
 .project-card img {
     width: 100%;
     border-radius: 20px;
     aspect-ratio: 1/1;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.project-card img:hover{
+    transform: scale(1.05);
 }
 
 .project-card p {
+    text-decoration: none;   /* bỏ gạch chân */
+    color: #000000; 
     text-align: center;
     margin-top: 10px;
     font-weight: 600;
     font-size: 14px;
+    transition: transform 0.5s ease;
+}
+.project-card p:hover{
+    transform: scale(1.05);
 }
 
 /* 3. Pets Slider */
@@ -109,7 +133,9 @@
     /* border: 8px solid #bfdbfe;
     border-radius: 20px; */
     overflow: hidden;
-    height: 300px;
+    height: 100%;
+    width: 100%;
+
 }
 
 .pet-card.active .pet-img-wrapper {
@@ -132,6 +158,11 @@
     border-radius: 10px;
     margin-top: 10px;
     font-weight: 700;
+    transition: transform 0.5s ease;
+}
+.btn-adopt-now:hover{
+        transform: scale(1.05);
+
 }
 
 .next-btn {
@@ -146,8 +177,11 @@
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
+    transition: transform 0.5s ease;
 }
-
+.next-btn:hover{
+    transform: scale(1.05);
+}
 /* 4. Blog & Volunteer */
 .blog-volunteer-section {
     max-width: 1200px;
@@ -159,6 +193,7 @@
     display: flex;
     gap: 30px;
     background: #fffdf3;
+    margin-bottom: 50px;
     /* padding: 20px; */
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -172,6 +207,8 @@
 }
 
 .volunteer-signup {
+    width: 100vw;
+    /* height: ; */
     margin-top: 20px;
     text-align: center;
     background: url('img/img25.png');
@@ -181,6 +218,10 @@
     /* border-radius: 30px; */
     color: #fff;
     position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 .signup-form {

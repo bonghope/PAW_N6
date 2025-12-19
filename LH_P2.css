@@ -1,0 +1,697 @@
+/* ================= 1. CẤU HÌNH CHUNG ================= */
+:root {
+    --primary-color: #302b70;    /* Tím than */
+    --active-bg: #dbeafe;        /* Xanh nhạt (Menu/Footer) */
+    --tab-light-bg: #bfdbfe;     /* Tab Trang chủ */
+    --tab-dark-bg: #3b82f6;      /* Tab Liên hệ */
+    
+    --max-width-header: 1440px;  /* Khung web tổng */
+    
+    --max-width-content: 1200px; 
+    --max-width-footer:1000px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5e5; /* Màu nền demo */
+    display: flex; justify-content: center;
+}
+
+.site-wrapper {
+    width: 100%;
+    max-width: var(--max-width-header);
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+}
+.sticky-nav-wrapper {
+    /* Đây là lệnh giúp thanh này dính lại khi cuộn */
+    position: sticky; 
+    position: -webkit-sticky; /* Hỗ trợ trình duyệt Safari cũ */
+    
+    /* Vị trí dính: sát mép trên cùng */
+    top: 0; 
+    
+    /* Z-index rất cao để đảm bảo nó luôn nổi trên nội dung khi cuộn */
+    z-index: 1000; 
+    
+    /* Màu nền trong suốt (hoặc trắng nếu muốn che nội dung trôi qua phía sau tab) */
+    background-color: transparent; 
+}
+.btn-chat-noi {
+    
+    position: fixed; /* BẮT BUỘC: Giúp nó "stay" trên màn hình */
+    
+    /* Căn vị trí giống trong ảnh */
+    top: 480px;  
+    right: 80px;    
+    width: 73px;
+    height: 73px;
+    z-index: 9999;  /* Đảm bảo nó nổi lên trên cùng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-chat-noi img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hoặc contain tùy hình */
+    border-radius: 50%;
+}
+/* ================= 2. HEADER ================= */
+.main-header {
+    background-color: #ffffff;
+    height: 90px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex; justify-content: center;
+    position: relative; z-index: 100;
+}
+
+.header-container {
+    width: 100%; 
+    max-width: var(--max-width-header); /* Theo chuẩn 1000px */
+    height: 100%;
+    display: flex; justify-content: space-between; 
+    align-items: center; 
+    margin-left: 42px;
+    margin-right: 42px;
+    padding: 0; /* Không padding để thẳng hàng tuyệt đối */
+}
+
+.logo img { 
+    height: 65px; 
+    width: auto; 
+    display: block; }
+
+.nav-menu ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 15px; 
+    align-items: center; }
+.nav-link {
+    text-decoration: none; 
+    color: #000;
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-weight: 500; 
+    font-size: 16px; 
+    text-transform: uppercase;
+    padding: 8px 15px; 
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    white-space: nowrap;
+}
+.nav-link:hover { 
+    color: var(--primary-color); }
+.nav-link.active { 
+    background-color: var(--active-bg); 
+    color: #000; font-weight: 800; }
+
+.header-actions { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center; }
+.icon-btn { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 20px; 
+    color: #000; 
+    display: flex; 
+    align-items: center; 
+    transition: 0.3s; }
+.icon-btn:hover { color: var(--primary-color); 
+    transform: scale(1.1); }
+
+/* ================= 3. BREADCRUMB (UPDATE 3 TABS) ================= */
+.breadcrumb-bar {
+    width: 100%; 
+    display: flex; 
+    justify-content: center;
+    position: relative; 
+    z-index: 90; 
+    margin-top: -5px;
+}
+.breadcrumb-container {
+    width: 100%; 
+    max-width: var(--max-width-content); 
+    padding: 0; 
+    display: flex;
+}
+.breadcrumb-tabs {
+    display: flex; 
+    align-items: flex-end; 
+    margin-left: 0;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+}
+
+/* --- Style chung cho tất cả các Tab --- */
+.tab-link {
+    text-decoration: none; 
+    display: block; 
+    padding: 12px 40px 12px 30px; /* Padding phải rộng để không bị tab sau che mất chữ */
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 700; 
+    font-size: 15px;
+    
+    /* Mặc định là màu nhạt (Trạng thái chưa chọn) */
+    background-color: var(--tab-light-bg); 
+    color: #000;
+    
+    /* Tạo hình dáng tab nghiêng/bo góc */
+    border-radius: 25px 0 20px 0; 
+    
+    position: relative; 
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+/* Tab đầu tiên (Trang chủ) có dáng hơi khác một chút ở góc trái */
+.tab-link.step-1 {
+    border-radius: 0 0 20px 20px; /* Hoặc giữ nguyên 0 0 0 20px như cũ nếu bạn thích vuông góc trên */
+    z-index: 1;
+    margin-left: 0;
+    padding-left: 40px; /* Căn lề trái rộng hơn chút */
+}
+
+/* Tab thứ 2 (Liên hệ) - Đè lên tab 1 */
+.tab-link.step-2 {
+    z-index: 2;
+    margin-left: -30px; /* Kéo lùi lại để đè lên tab trước */
+}
+
+/* Tab thứ 3 (Đội ngũ) - Đè lên tab 2 */
+.tab-link.step-3 {
+    z-index: 3;
+    margin-left: -30px;
+}
+
+/* --- Trạng thái Active (Đang chọn) --- */
+.tab-link.active {
+    background-color: var(--tab-dark-bg); /* Màu xanh đậm */
+    color: #fff; /* Chữ trắng */
+    padding-right: 50px; /* Tab cuối dài hơn chút cho đẹp */
+}
+
+/* Hiệu ứng hover */
+.tab-link:hover {
+    filter: brightness(95%);
+}
+/* ================= 4. FOOTER HOÀN CHỈNH ================= */
+footer { 
+    width: 100%; 
+    margin-top: 20px; 
+    padding-top: 20px; }
+
+.footer-inner {
+    background-color: var(--active-bg);
+    width: 100%;
+    border-top-left-radius: 80px; /* Góc bo lớn đặc trưng */
+    padding: 40px 0 20px 0;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--max-width-footer); /* 1000px */
+    margin: 0 auto;
+    padding: 0;
+    
+    display: grid;
+    /* Tỷ lệ cột khớp ảnh: 40% - 20% - 30% */
+    grid-template-columns: 4.3fr 2fr 2.7fr; 
+    gap: 60px; 
+    margin-bottom: 40px;
+}
+
+/* --- Cột 1: Thông tin (Căn trái tuyệt đối) --- */
+.col-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Ép mọi thứ sang trái */
+}
+
+/* Logo & Tên Pawsitive */
+.brand-wrapper {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.brand-icon {
+    width: auto; 
+    height: 99px; 
+    object-fit: contain;
+
+    margin-bottom: 5px; display: block; 
+    margin-left: 0;
+}
+.brand-name {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 32px; 
+    font-weight: 800; 
+    color: var(--primary-color);
+    line-height: 1; 
+    margin-left: -2px; /* Thẳng mép với icon */
+    text-transform: none;
+}
+
+/* Mô tả */
+.footer-desc {
+    font-size: 14px; 
+    line-height: 1.6; 
+    color: #333; 
+    margin-bottom: 20px;
+    padding-right: 10px; 
+    text-align: left;
+}
+
+/* Giá trị cốt lõi */
+.core-value-box {
+    background-color: #fff; 
+    padding: 10px; border-radius: 12px;
+    border-left: 5px solid var(--primary-color); 
+    margin-bottom: 20px;
+    width: 100%; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); 
+    text-align: left;
+}
+.core-value-box strong { 
+    display: block; 
+    font-size: 14px; 
+    margin-bottom: 5px; 
+    color: #000; 
+    font-weight: 800; }
+.core-value-box p { 
+    font-size: 14px; 
+    color: #555; 
+    margin: 0; }
+
+/* Social Icons */
+.social-icons { 
+    display: flex; 
+    gap: 15px; }
+.social-icons a { 
+    color: #000; 
+    font-size: 20px; 
+    transition: 0.3s; }
+.social-icons a:hover { 
+    color: var(--primary-color); 
+    transform: translateY(-3px); }
+
+/* --- Cột 2 & 3: Tiêu đề --- */
+.footer-heading {
+    font-family: 'Montserrat Alternates', sans-serif; 
+    font-size: 20px; font-weight: bold; color: #000;
+    margin-top: 90px;
+    margin-bottom: 15px; 
+    padding-bottom: 8px; 
+    display: inline-block;
+    border-bottom: 3px solid var(--primary-color); /* Gạch chân tím */
+}
+
+/* Links */
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 15px; }
+.footer-list a {
+    text-decoration: none; 
+    color: #333; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; transition: 0.3s;
+}
+.footer-list a i { 
+    font-size: 10px; 
+    margin-right: 12px; 
+    color: #333; 
+    width: 10px; }
+.footer-list a:hover { 
+    color: var(--primary-color); 
+    transform: translateX(5px); }
+
+/* Contact */
+.contact-list { list-style: none; }
+.contact-list li {
+    display: flex; 
+    align-items: flex-start; 
+    margin-bottom: 18px;
+    font-size: 14px; 
+    color: #333; 
+    font-weight: 500; 
+    line-height: 1.5;
+}
+.contact-list i {
+    width: 25px; 
+    min-width: 25px; 
+    margin-top: 3px; 
+    
+    font-size: 16px; 
+    color: #000;
+}
+
+/* Bottom */
+.footer-bottom {
+    border-top: 1px solid #cbd5e1; 
+    padding-top: 25px; 
+    text-align: center;
+    font-size: 13px; 
+    color: #64748b; 
+    width: 100%;
+    max-width: var(--max-width-content); 
+    margin: 0 auto;
+}
+/* ================= 5. BODY CONTENT  ================= */
+/* ================= PHẦN INTRO LIÊN HỆ ================= */
+
+/* Bao quanh toàn bộ phần intro */
+.intro-contact-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px; /* Cách breadcrumb một chút */
+    padding-bottom: 20px;
+}
+
+.intro-container {
+    width: 100%;
+    max-width: var(--max-width-content); /* 1200px */
+    padding: 0 20px;
+}
+
+/* Flexbox chia cột */
+.intro-row {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* --- Cột trái: Text Box --- */
+.intro-text-box {
+    flex: 1; /* Chiếm 1 phần */
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 30px; /* Bo góc to như thiết kế */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ */
+    position: relative;
+}
+
+.intro-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.intro-divider {
+    width: 100%;
+    height: 2px;
+    background-color: #eee; /* Đường gạch ngang mờ */
+    margin-bottom: 20px;
+}
+
+.intro-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.8; /* Giãn dòng rộng cho dễ đọc */
+    color: #555;
+    text-align: justify; /* Căn đều 2 bên */
+}
+
+/* Tô màu cam cho các từ khóa (nếu muốn giống ảnh chính xác từng chữ màu) */
+/* Bạn có thể dùng thẻ <span> trong HTML để tô màu từng chữ nếu cần */
+
+/* --- Cột phải: Ảnh --- */
+.intro-image-box {
+    flex: 1; /* Chiếm 1 phần bằng text box */
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.intro-image-box img {
+    width: 100%;
+    max-width: 550px; /* Giới hạn chiều rộng ảnh */
+    height: 350px;
+    object-fit: cover; /* Cắt ảnh vừa khung mà không bị méo */
+    border-radius: 30px; /* Bo góc ảnh */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= PHẦN DANH SÁCH CÔNG VIỆC ================= */
+
+.job-listing-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+    background-color: #fff;
+}
+
+.job-container {
+    width: 100%;
+    max-width: var(--max-width-content);
+    padding: 0 20px;
+}
+
+/* Tiêu đề mục tuyển dụng */
+.job-section-title {
+    text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 26px; /* Cỡ chữ lớn */
+    font-weight: 800; /* In đậm */
+    color: #000;
+    text-transform: uppercase; /* Tự động viết hoa toàn bộ */
+    margin-top: 50px;
+    margin-bottom: 50px; /* Tạo khoảng trống thoáng phía dưới để chứa list công việc */
+}
+
+/* ================= THẺ CÔNG VIỆC CHI TIẾT (FIX HOÀN THIỆN) ================= */
+
+/* 1. Thẻ bao ngoài cùng: Chịu trách nhiệm tạo khung trắng, bo góc cho TẤT CẢ */
+.job-detail-card {
+    background-color: #fff; /* Nền trắng nằm ở đây */
+    border-radius: 30px;    /* Bo góc cho cả thẻ */
+    padding: 50px;          /* Khoảng cách từ viền vào nội dung bên trong */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05); /* Đổ bóng cho cả khối */
+    margin-bottom: 60px;
+    
+    /* Để đảm bảo mọi thứ nằm gọn trong thẻ */
+    overflow: hidden; 
+    border: 1px solid transparent; /* Tránh lỗi margin collapse */
+}
+
+/* 2. Header (Tiêu đề): Nằm bên trong thẻ trắng */
+.job-card-header {
+    text-align: center;
+    margin-bottom: 40px; /* Cách phần nội dung bên dưới một đoạn */
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.job-name {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.job-divider {
+    width: 250px;
+    height: 3px;
+    background-color: #b7b7b7; 
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* 3. Phần thân (Body): Chia cột Chữ - Ảnh */
+.job-card-body {
+    display: flex;
+    gap: 40px; /* Khoảng cách giữa cột chữ và cột ảnh */
+    align-items: flex-start;
+}
+
+/* Cột trái: Text */
+.job-text-col {
+    flex: 1.4; /* Chữ chiếm phần rộng hơn chút */
+}
+
+.job-text-group {
+    margin-bottom: 25px;
+}
+
+.job-sub-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 10px;
+    text-decoration: underline; /* Gạch chân nhẹ tiêu đề con nếu muốn giống ảnh */
+}
+
+.job-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.job-list li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    text-align: justify; /* Căn đều văn bản cho đẹp */
+}
+
+/* Cột phải: Ảnh */
+.job-img-col {
+    flex: 1; /* Ảnh chiếm 1 phần */
+}
+
+.job-img-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px; /* Bo góc riêng cho bức ảnh bên trong */
+    object-fit: cover;
+    aspect-ratio: 4/3; /* Tỷ lệ khung hình chuẩn */
+    display: block;
+}
+
+/* --- Responsive Mobile --- */
+@media (max-width: 900px) {
+    .job-card-body {
+        flex-direction: column-reverse; /* Ảnh lên trên, chữ xuống dưới */
+        gap: 30px;
+    }
+    
+    .job-detail-card {
+        padding: 30px; /* Giảm padding trên điện thoại */
+    }
+    
+    .job-img-col {
+        width: 100%;
+    }
+}
+
+/* ================= PHẦN BANNER KÊU GỌI THAM GIA ================= */
+
+.join-section-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 80px; /* Khoảng cách với footer */
+    padding-top: 40px;
+}
+
+.join-banner {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 0 20px; /* Cách lề màn hình trên mobile */
+    
+    /* Màu nền xám nhạt giống trong ảnh */
+    background: linear-gradient(90deg, #e9ecef 0%, #f8f9fa 100%);
+    
+    border-radius: 30px; /* Bo góc lớn */
+    overflow: hidden;    /* Để ảnh không trồi ra ngoài góc bo */
+    display: flex;       /* Dàn hàng ngang */
+    align-items: center; /* Căn giữa dọc */
+    justify-content: space-between;
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Đổ bóng nhẹ */
+    min-height: 350px;
+}
+
+/* --- Cột nội dung (Trái) --- */
+.join-content {
+    flex: 1.2; /* Chiếm phần rộng hơn chút */
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung */
+    text-align: center;
+}
+
+.join-title {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.join-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 600px; /* Giới hạn chiều rộng chữ cho dễ đọc */
+}
+
+/* --- Nút bấm "Tham gia ngay" --- */
+.btn-join-now {
+    display: inline-block;
+    background-color: #2F80ED; /* Màu xanh dương giống ảnh mẫu */
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(47, 128, 237, 0.3);
+}
+
+.btn-join-now:hover {
+    background-color: #1a66cc; /* Đậm hơn khi hover */
+    transform: translateY(-2px);
+}
+
+/* --- Cột ảnh (Phải) --- */
+.join-image-col {
+    flex: 1; /* Chiếm 1 phần */
+    height: 100%;
+    min-height: 350px;
+    position: relative;
+}
+
+.join-image-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Lấp đầy khung */
+    display: block;
+    
+    /* Mẹo nhỏ: Tạo hiệu ứng mờ dần sang trái để hòa vào nền xám (nếu trình duyệt hỗ trợ) */
+    mask-image: linear-gradient(to right, transparent, black 20%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .join-banner {
+        flex-direction: column-reverse; /* Đảo ảnh lên trên hoặc xuống dưới */
+        text-align: center;
+    }
+    
+    .join-image-col {
+        width: 100%;
+        height: 250px; /* Chiều cao ảnh trên mobile */
+        min-height: auto;
+    }
+    
+    .join-image-col img {
+        mask-image: none; /* Bỏ hiệu ứng mờ trên mobile */
+        -webkit-mask-image: none;
+    }
+
+    .join-content {
+        padding: 40px 20px;
+        align-items: center;
+    }
+}
