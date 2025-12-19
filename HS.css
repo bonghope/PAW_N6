@@ -29,29 +29,22 @@ body {
     display: flex; flex-direction: column;
 }
 .sticky-nav-wrapper {
-    /* Đây là lệnh giúp thanh này dính lại khi cuộn */
     position: sticky; 
-    position: -webkit-sticky; /* Hỗ trợ trình duyệt Safari cũ */
     
-    /* Vị trí dính: sát mép trên cùng */
     top: 0; 
-    
-    /* Z-index rất cao để đảm bảo nó luôn nổi trên nội dung khi cuộn */
     z-index: 1000; 
     
-    /* Màu nền trong suốt (hoặc trắng nếu muốn che nội dung trôi qua phía sau tab) */
     background-color: transparent; 
 }
 .btn-chat-noi {
     
-    position: fixed; /* BẮT BUỘC: Giúp nó "stay" trên màn hình */
+    position: fixed; 
     
-    /* Căn vị trí giống trong ảnh */
     top: 480px;  
     right: 80px;    
     width: 73px;
     height: 73px;
-    z-index: 9999;  /* Đảm bảo nó nổi lên trên cùng */
+    z-index: 9999;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +52,7 @@ body {
 .btn-chat-noi img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Hoặc contain tùy hình */
+    object-fit: cover; 
     border-radius: 50%;
 }
 /* ================= 2. HEADER ================= */
@@ -73,13 +66,13 @@ body {
 
 .header-container {
     width: 100%; 
-    max-width: var(--max-width-header); /* Theo chuẩn 1000px */
+    max-width: var(--max-width-header); 
     height: 100%;
     display: flex; justify-content: space-between; 
     align-items: center; 
     margin-left: 42px;
     margin-right: 42px;
-    padding: 0; /* Không padding để thẳng hàng tuyệt đối */
+    padding: 0; 
 }
 
 .logo img { 
@@ -125,15 +118,13 @@ body {
     transition: 0.3s; }
 .icon-btn:hover { color: var(--primary-color); 
     transform: scale(1.1); }
-/* Container chính của Breadcrumb */
-/* --- BREADCRUMB TAB CHỒNG LỚP --- */
 .breadcrumb-bar {
     width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 90;
-    margin-top: -5px; /* Khớp sát mép header */
+    margin-top: -5px; 
 }
 
 .breadcrumb-container {
@@ -147,9 +138,8 @@ body {
     align-items: flex-end;
 }
 
-/* Style chung cho tất cả các Tab */
 .tab-link {
-    text-decoration: none !important; /* Xóa bỏ gạch chân tím lỗi */
+    text-decoration: none !important; 
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 18px;
@@ -161,29 +151,25 @@ body {
     outline: none;
 }
 
-/* Tab 1: Trang chủ (Nằm dưới cùng bên trái) */
 .tab-link.home {
-    background-color: var(--tab-light-bg); /* Màu nhạt nhất */
+    background-color: var(--tab-light-bg); 
     color: #000;
-    border-radius: 0 0 0 25px; /* Bo góc dưới trái */
+    border-radius: 0 0 0 25px; 
     z-index: 1;
 }
 
-/* Tab 2: Nhận nuôi (Đè lên tab 1) */
 .tab-link.adopt {
     background-color: #a2d2ff; 
     color: #000;
-    margin-left: -30px; /* Kéo đè lên tab trước */
-    padding-left: 55px; /* Bù khoảng cách bị đè */
+    margin-left: -30px; 
+    padding-left: 55px; 
     border-radius: 25px 0 0 0;
     z-index: 2;
-    box-shadow: -5px 0 10px rgba(0,0,0,0.1); /* Tạo bóng đổ lấn sang trái để thấy lớp đè */
+    box-shadow: -5px 0 10px rgba(0,0,0,0.1); 
 }
-
-/* Tab 3: Măng cụt (Tab hiện tại - Đè lên trên cùng) */
 .tab-link.current {
-    background-color: var(--tab-dark-bg); /* Màu xanh đậm nhất */
-    color: #fff !important; /* Chữ trắng nổi bật */
+    background-color: var(--tab-dark-bg); 
+    color: #fff !important; 
     margin-left: -30px;
     padding-left: 55px;
     padding-right: 45px;
@@ -195,10 +181,9 @@ body {
 /* Hiệu ứng hover cho Tab */
 .tab-link:hover {
     filter: brightness(1.05);
-    transform: translateY(-2px); /* Nhô lên nhẹ khi hover */
+    transform: translateY(-2px); 
 }
 /* --- CSS HỒ SƠ BÉ MĂNG CỤT CHUẨN THIẾT KẾ --- */
-/* Container chung cho 1200px */
 .pet-profile-container {
     width: 100%;
     max-width: 1200px;
@@ -209,13 +194,12 @@ body {
 
 .profile-card {
     display: flex;
-    align-items: flex-start; /* Để các phần tử căn theo lề trên */
+    align-items: flex-start; 
     position: relative;
     width: 100%;
     padding-top: 20px;
 }
 
-/* Khối trang trí 125x121 */
 .decoration-behind {
     position: absolute;
     top: 0;
@@ -245,22 +229,20 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* THẺ THÔNG TIN XANH */
 .pet-info-card {
     flex: 1;
     background-color: #dbeafe;
     margin-left: -50px;
-    margin-top: 75px; /* Đẩy khối xanh xuống để lộ chữ Măng Cụt bên trên */
+    margin-top: 75px; 
     padding: 20px 40px 25px 100px;
     border-radius: 0px 29px 29px 29px;
     position: relative;
     min-height: 250px;
 }
 
-/* Dòng tên Măng Cụt nằm ngoài khối xanh */
 .pet-header-top {
     position: absolute;
-    top: -55px; /* Đưa tên lên phía trên khối xanh */
+    top: -55px; 
     left: 100px;
     display: flex;
     align-items: center;
@@ -284,30 +266,30 @@ body {
     font-size: 20px;
 }
 .status-badge.recovering {
-    background-color: #00a51b; /* Xanh nhạt */
-    color: #ffffff;           /* Chữ xanh đậm để dễ đọc */
+    background-color: #00a51b; 
+    color: #ffffff;           
 }
 
 /* CĂN CHỈNH 2 CỘT THÔNG TIN */
 .pet-specs-columns {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Chia 2 cột bằng nhau tuyệt đối */
-    gap: 30px 100px; /* Khoảng cách giữa 2 cột lớn để thoáng */
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px 100px; 
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
 .spec-line {
     display: flex;
-    align-items: center; /* Căn giữa chấm xanh và chữ theo chiều dọc */
+    align-items: center; 
     gap: 12px;
     font-size: 16px;
     
-    /* Khoảng cách chữ so với đường kẻ bên dưới */
+
     padding-bottom: 10px; 
     margin-bottom: 10px;
     
-    /* Đường kẻ trắng mờ nằm dưới mỗi dòng thông tin */
+
     border-bottom: 1.5px solid rgba(255, 255, 255, 0.6); 
 }
 
@@ -317,9 +299,9 @@ body {
     display: inline-block;
 }
 
-/* Ẩn chấm xanh ở các dòng phụ nếu bạn muốn giống ảnh mẫu 100% */
+
 .spec-line .dot-lead {
-    flex-shrink: 0; /* Không cho chấm bị bóp méo */
+    flex-shrink: 0; 
 }
 
 /* FOOTER ACTIONS */
@@ -327,7 +309,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% + 40px); /* Bù lại padding để dạt sát lề */
+    width: calc(100% + 40px); 
     margin-left: -100px; 
 }
 
@@ -340,56 +322,48 @@ body {
 }
 
 .btn-action-blue {
-    /* 1. Bố cục và Màu sắc */
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background-color: #3b82f6; /* Màu xanh Primary của bạn */
+    background-color: #3b82f6; 
     color: #ffffff !important;
     
-    /* 2. Định dạng chữ và Kích thước */
     padding: 12px 35px;
-    border-radius: 50px; /* Bo tròn hoàn toàn */
+    border-radius: 50px; 
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 16px;
     white-space: nowrap;
     
-    /* 3. Hiệu ứng đổ bóng chuẩn Figma */
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
     
-    /* 4. Chuyển động mượt mà */
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
 }
 
-/* --- HIỆU ỨNG KHI RE CHUỘT (HOVER) --- */
 .btn-action-blue:hover {
-    background-color: #2563eb; /* Đậm hơn một chút */
-    transform: translateY(-3px); /* Nhô lên nhẹ */
+    background-color: #2563eb; 
+    transform: translateY(-3px); 
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
 }
 
-/* Hiệu ứng cho icon mũi tên */
 .btn-action-blue i {
     font-size: 14px;
     transition: transform 0.3s ease;
 }
 
 .btn-action-blue:hover i {
-    transform: translateX(5px); /* Mũi tên trượt sang phải khi hover */
+    transform: translateX(5px); 
 }
 
-/* --- HIỆU ỨNG KHI NHẤN (ACTIVE) --- */
 .btn-action-blue:active {
     transform: translateY(-1px);
     box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
 }
-/* --- BANNER HỖ TRỢ TRẢI DÀI TOÀN MÀN HÌNH --- */
 .banner-container {
     width: 100%;
-    margin: 40px 0; /* Khoảng cách trên dưới cho dải banner */
+    margin: 40px 0; 
 }
 
 .support-banner-fluid {
@@ -401,13 +375,12 @@ body {
     align-items: center;
     
     /* GÁN ẢNH NỀN NN_1 */
-    background-image: url('NN_img.jpg'); /* Đảm bảo file tên NN_1 và đúng định dạng .jpg hoặc .png */
-    background-size: cover;      /* Ảnh phủ kín khung hình */
-    background-position: center; /* Giữ tâm ảnh ở giữa */
+    background-image: url('NN_img.jpg'); 
+    background-size: cover;      
+    background-position: center; 
     background-repeat: no-repeat;
 }
 
-/* Lớp phủ màu trắng mờ đè lên ảnh để làm nổi bật chữ (giống thiết kế Figma) */
 .support-banner-fluid::before {
     content: "";
     position: absolute;
