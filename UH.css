@@ -1,4 +1,3 @@
-/* ================= 1. CẤU HÌNH CHUNG ================= */
 :root {
     --primary-color: #302b70;    
     --active-bg: #dbeafe;        
@@ -54,7 +53,8 @@ body {
     object-fit: cover; 
     border-radius: 50%;
 }
-/* ================= 2. HEADER ================= */
+
+
 .main-header {
     background-color: #ffffff;
     height: 90px; width: 100%;
@@ -118,8 +118,9 @@ body {
 .icon-btn:hover { color: var(--primary-color); 
     transform: scale(1.1); }
 
-/* ================= 3. BREADCRUMB (TAB CHỒNG LỚP) ================= */
-.breadcrumb-bar {
+
+
+    .breadcrumb-bar {
     width: 100%; 
     display: flex; 
     justify-content: center;
@@ -140,7 +141,7 @@ body {
     filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
 }
 
-/* Tab Trang chủ */
+
 .tab-link.home {
     text-decoration: none; 
     display: block; 
@@ -154,7 +155,6 @@ body {
     z-index: 1; transition: 0.3s;
 }
 
-/* Tab Nhận nuôi (Đè lên trên) */
      .tab-link.donate {
     text-decoration: none; 
     display: block; padding: 12px 30px;
@@ -215,10 +215,8 @@ body {
     
     z-index: 100;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    /* display: flex; */
     flex-direction: column;
     overflow: hidden;
-    /* gap: 15px; */
 }
 .paw-base-layer {
     position: absolute;
@@ -332,11 +330,11 @@ body {
     text-decoration: underline;
     opacity: 0.85;
 }
-/* ===== SPONSOR SECTION ===== */
+
 .sponsor-section {
     background-color: #dff0ff;
-    width: 100%; /* Đảm bảo box xanh rộng hết container */
-    margin: 60px auto; /* Căn giữa box xanh */
+    width: 100%; 
+    margin: 60px auto; 
     padding: 50px 20px;
     text-align: center;
 }
@@ -370,11 +368,13 @@ body {
     font-family: 'Montserrat', sans-serif; 
     font-weight: 100;
 }
-/* Container bọc ngoài cùng */
+
+
+
 .other-support-section {
     width: 100%;
     max-width: var(--max-width-content);
-    margin: 80px auto; /* Tăng khoảng cách với phần trên */
+    margin: 80px auto; 
     text-align: center;
 }
 .section-title-center{
@@ -384,15 +384,13 @@ body {
     font-weight: 700;
     text-align: center;
 }
-/* Grid chứa 3 icon */
 .support-methods-grid {
     display: flex;
     justify-content: center;
-    gap: 100px; /* Khoảng cách giữa các cột */
+    gap: 100px; 
     margin: 50px 0;
 }
 
-/* Mỗi item bao gồm Icon + Chữ */
 .method-item {
     display: flex;
     flex-direction: column;
@@ -401,22 +399,21 @@ body {
     transition: 0.3s;
 }
 .method-item:hover .icon-circle-outer img {
-    transform: scale(1.1); /* Hình ảnh bên trong hơi phóng to nhẹ */
+    transform: scale(1.1); 
     transition: 0.3s;
 }
 
-/* Vòng tròn bên ngoài icon */
+
 .icon-circle-outer {
     width: 120px;
     height: 120px;
-    border: 4px solid #d1d5db; /* Màu viền xám mặc định */
+    border: 4px solid #d1d5db; 
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
     
-    /* QUAN TRỌNG: Tạo chuyển động mượt mà khi hover */
     transition: all 0.3s ease; 
     background-color: #fff;
     cursor: pointer;
@@ -661,23 +658,4 @@ footer {
     grid-template-columns: 1.8fr 1fr;
     gap: 20px;
     align-items: stretch; 
-}
-
-
-
-
-
-
-/* Responsive cho phần Nội dung */
-@media (max-width: 1024px) {
-    .adoption-grid { grid-template-columns: 1fr; }
-    .process-steps { flex-wrap: wrap; justify-content: center; gap: 20px; }
-    .step-item { width: 45%; }
-    .step-arrow { display: none; }
-
-    .footer-container { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
-    .header-container,
-    .breadcrumb-container { padding: 0 20px; }
-
-    .nav-menu { display: none; }
 }
